@@ -20,10 +20,10 @@ done
 PRGDIR=`dirname "$PRG"`
 
 # Only set ORIENTDB_HOME if not already set
-[ -f "$ORIENTDB_HOME"/lib/orientdb-tools-@VERSION@.jar ] || ORIENTDB_HOME=`cd "$PRGDIR/.." ; pwd`
+[ -f "$ORIENTDB_HOME"/lib/orientdb-tools-1.2.0-SNAPSHOT.jar ] || ORIENTDB_HOME=`cd "$PRGDIR/.." ; pwd`
 export ORIENTDB_HOME
 
 ORIENTDB_SETTINGS="-Dcache.level1.enabled=false -Dcache.level2.enabled=false"
 #JAVA_OPTS=-Xmx1024m
 
-java -client $JAVA_OPTS $ORIENTDB_SETTINGS -Dfile.encoding=utf-8 -Dorientdb.build.number="@BUILD@" -cp "$ORIENTDB_HOME/lib/orientdb-tools-@VERSION@.jar:$ORIENTDB_HOME/lib/*" com.orientechnologies.orient.graph.console.OGremlinConsole $*
+java -client $JAVA_OPTS $ORIENTDB_SETTINGS -Dfile.encoding=utf-8 -Dorientdb.build.number="12633" -cp "$ORIENTDB_HOME/lib/orientdb-tools-1.2.0-SNAPSHOT.jar:$ORIENTDB_HOME/lib/*" com.orientechnologies.orient.console.OConsoleDatabaseApp $*

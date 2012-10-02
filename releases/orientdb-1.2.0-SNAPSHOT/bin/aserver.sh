@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 1999-2010 Luca Garulli
+# Copyright (c) 2009-2012 Luca Garulli
 #
 
 echo "           .                                              "
@@ -23,7 +23,7 @@ echo "      ...,::,,,,::.. \`:  .,,  :,    :   :     :   .:      "
 echo "           ,::::,,,. \`:   ,,   :::::    :     :   .:      "
 echo "           ,,:\` \`,,.                                      "
 echo "          ,,,    .,\`                                      "
-echo "         ,,.     \`,                     GRAPH-DB Server   "
+echo "         ,,.     \`,                      S E R V E R        "
 echo "       \`\`        \`.                                       "
 echo "                 \`\`                                       "
 echo "                 \`                                        "
@@ -48,12 +48,13 @@ PRGDIR=`dirname "$PRG"`
 [ -f "$ORIENTDB_HOME"/bin/orient.sh ] || ORIENTDB_HOME=`cd "$PRGDIR/.." ; pwd`
 export ORIENTDB_HOME
 
-CONFIG_FILE=$ORIENTDB_HOME/config/orientdb-server-config.xml
+CONFIG_FILE=$ORIENTDB_HOME/config/orientdb-aserver-config.xml
 LOG_FILE=$ORIENTDB_HOME/config/orientdb-server-log.properties
 LOG_CONSOLE_LEVEL=info
 LOG_FILE_LEVEL=fine
 WWW_PATH=$ORIENTDB_HOME/www
-ORIENTDB_SETTINGS="-Dprofiler.enabled=true -Dcache.level1.enabled=false -Dcache.level2.strategy=1"
+#UNCOMMENT BELOW TO DISABLE THE CACHE
+ORIENTDB_SETTINGS=-Dcache.level1.enabled=false
 JAVA_OPTS_SCRIPT=-XX:+HeapDumpOnOutOfMemoryError
 
-java -server $JAVA_OPTS $JAVA_OPTS_SCRIPT $ORIENTDB_SETTINGS -Djava.util.logging.config.file="$LOG_FILE" -Dorientdb.config.file="$CONFIG_FILE" -Dorientdb.www.path="$WWW_PATH" -Dlog.console.level=$LOG_CONSOLE_LEVEL -Dlog.file.level=$LOG_FILE_LEVEL -Dorientdb.build.number="@BUILD@" -cp "$ORIENTDB_HOME/lib/*:" com.orientechnologies.orient.server.OServerMain
+java -server $JAVA_OPTS $JAVA_OPTS_SCRIPT $ORIENTDB_SETTINGS -Djava.util.logging.config.file="$LOG_FILE" -Dorientdb.config.file="$CONFIG_FILE" -Dorientdb.www.path="$WWW_PATH" -Dorientdb.build.number="12633" -cp "$ORIENTDB_HOME/lib/orientdb-server-1.2.0-SNAPSHOT.jar:$ORIENTDB_HOME/lib/*" com.orientechnologies.orient.server.OServerMain
