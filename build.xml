@@ -7,14 +7,14 @@
   <property name="product" value="OrientDB"/>
   <property name="version" value="1.2.0-SNAPSHOT"/>
   <condition property="global.release" value="${releaseHome}/orientdb-${version}"
-             else="../releases/orientdb-${version}">
+             else="releases/orientdb-${version}">
     <isset property="releaseHome"/>
   </condition>
-  <condition property="db.release" value="${releaseHome}/orientdb-${version}" else="../releases/orientdb-${version}">
+  <condition property="db.release" value="${releaseHome}/orientdb-${version}" else="releases/orientdb-${version}">
     <isset property="releaseHome"/>
   </condition>
   <condition property="graph.release" value="${releaseHome}/orientdb-graphed-${version}"
-             else="../releases/orientdb-graphed-${version}">
+             else="releases/orientdb-graphed-${version}">
     <isset property="releaseHome"/>
   </condition>
 
@@ -260,13 +260,13 @@
 
   <target name="release" depends="install">
     <mkdir dir="${global.release}"/>
-    <delete file="../releases/orientdb-${version}.zip"/>
-    <zip destfile="../releases/orientdb-${version}.zip" basedir="../releases" level="9" update="false"
+    <delete file="releases/orientdb-${version}.zip"/>
+    <zip destfile="releases/orientdb-${version}.zip" basedir="releases" level="9" update="false"
          includes="orientdb-1*/" excludes="**/*.log.*"/>
 
     <mkdir dir="${graph.release}"/>
-    <delete file="../releases/orientdb-graphed-${version}.zip"/>
-    <zip destfile="../releases/orientdb-graphed-${version}.zip" basedir="../releases" level="9" update="false"
+    <delete file="releases/orientdb-graphed-${version}.zip"/>
+    <zip destfile="releases/orientdb-graphed-${version}.zip" basedir="releases" level="9" update="false"
          includes="orientdb-graphed-*/" excludes="**/*.log.*"/>
   </target>
 
