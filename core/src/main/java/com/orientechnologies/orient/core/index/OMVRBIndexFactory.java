@@ -40,6 +40,7 @@ public class OMVRBIndexFactory implements OIndexFactory {
     types.add(OIndexUnique.TYPE_ID);
     types.add(OIndexNotUnique.TYPE_ID);
     types.add(OIndexFullText.TYPE_ID);
+    types.add(OIndexLuceneFullText.TYPE_ID);
     types.add(OIndexDictionary.TYPE_ID);
     TYPES = Collections.unmodifiableSet(types);
   }
@@ -51,6 +52,7 @@ public class OMVRBIndexFactory implements OIndexFactory {
    * <li>NOTUNIQUE</li>
    * <li>FULLTEXT</li>
    * <li>DICTIONARY</li>
+   * <li>LUCENE_FULLTEXT</li>
    * </ul>
    */
   public Set<String> getTypes() {
@@ -65,6 +67,8 @@ public class OMVRBIndexFactory implements OIndexFactory {
       return new OIndexNotUnique();
     } else if (OIndexFullText.TYPE_ID.equals(iIndexType)) {
       return new OIndexFullText();
+    } else if (OIndexLuceneFullText.TYPE_ID.equals(iIndexType)) {
+        return new OIndexLuceneFullText();
     } else if (OIndexDictionary.TYPE_ID.equals(iIndexType)) {
       return new OIndexDictionary();
     }
